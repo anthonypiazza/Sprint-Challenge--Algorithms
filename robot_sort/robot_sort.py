@@ -104,6 +104,7 @@ class SortingRobot:
             self.set_light_off()
             if self.can_move_left() == False:
                     self.swap_item()
+                    self.move_right()
             while self.can_move_right() == True:
                 
                 print(f"\nCurrent Selected: {self._item}, Result of Comparison: {self.compare_item()}, Position Value: {self._list[self._position]}")
@@ -117,9 +118,16 @@ class SortingRobot:
                     self.swap_item()
                     self.move_right()
                     self.set_light_on()
-                elif self.compare_item() == 0 or -1:
-                    self.move_right()
 
+
+                    
+
+                elif self.compare_item() == 0 or -1:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.swap_item()
+                    self.move_right()
 
                 if self.can_move_right() == False:
                     if self.compare_item() == 1:
@@ -131,7 +139,8 @@ class SortingRobot:
                     elif self.compare_item() == 0 or -1:
                         self.move_left()
                         self.swap_item()
-                        self.move_right()
+                        self.move_right()    
+
             else:
                 while self.can_move_left() == True:
                     self.move_left()
